@@ -2,3 +2,75 @@
 ## Autor: aisernaa@udistrital.edu.co
 
 Proyecto para abordar los fundamentos de la ingenieria de software en aplicaciones web geograficas.
+
+
+flask:
+pip install Flask Flask-SQLAlchemy geoalchemy2 psycopg2
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from geoalchemy2 import Geometry
+
+# Inicialización de la aplicación Flask
+app = Flask(__name__)
+
+# Configuración de la URI de la base de datos PostgreSQL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://usuario:contraseña@localhost:5432/tu_base_de_datos'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Inicialización de SQLAlchemy con la aplicación Flask
+db = SQLAlchemy(app)
+
+# Definición del modelo 'Construccion'
+class Construccion(db.Model):
+    __tablename__ = 'construccion'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nupre = db.Column(db.String(100), nullable=False, unique=True)
+    direccion = db.Column(db.String(100))
+    tipo_de_construccion = db.Column(db.String(100))
+    pisos = db.Column(db.Integer)
+    area_construida = db.Column(db.Integer)
+    area_predio = db.Column(db.Integer)
+    estado = db.Column(db.Integer)
+    propietario = db.Column(db.String(100))
+    cedula_propietario = db.Column(db.Integer)
+    localizacion = db.Column(Geometry('POINT', srid=4326))  # Tipo geoespacial POINT
+
+    def __repr__(self):
+        return f'<Construccion {self.nupre}>'
+
+# Creación de la base de datos
+with app.app_context():
+    db.create_all()
+
+from geoalchemy2.elements import WKTElement
+from sqlalchemy import func
+
+# Inserción de una nueva construcción con coordenadas geoespaciales
+with app.app_context():
+    nueva_construccion = Construccion(
+        nupre='123456',
+        direccion='Calle Ficticia 123',
+        tipo_de_construccion='Residencial',
+        pisos=3,
+        area_construida=150,
+        area_predio=200,
+        estado=1,
+        propietario='Juan Pérez',
+        cedula_propietario=123456789,
+        localizacion=WKTElement('POINT(4.60971 -74.08175)', srid=4326)  # Coordenadas de Bogotá
+    )
+    db.session.add(nueva_construccion)
+    db.session.commit()
+
+from geoalchemy2 import functions as func
+
+# Consulta de construcciones dentro de un área definida por un polígono
+with app.app_context():
+    area = 'POLYGON((-74.1 4.6, -74.0 4.6, -74.0 4.7, -74.1 4.7, -74.1 4.6))'
+    construcciones = Construccion.query.filter(
+        func.ST_Within(Construccion.localizacion, WKTElement(area, srid=4326))
+    ).all()
+    for construccion in construcciones:
+        print(construccion)
