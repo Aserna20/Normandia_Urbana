@@ -2,3 +2,257 @@
 
 #formulario{
     width:50%};
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+/* Define color palette using CSS variables for easy modification */
+:root {
+    --dark-blue: #2c3e50; /* A strong, deep dark blue */
+    --beige: #f5f5dc; /* Classic beige for backgrounds */
+    --light-beige: #fafafa; /* Slightly lighter beige for contrast */
+    --accent-blue: #3498db; /* A vibrant blue for accents/buttons */
+    --accent-dark-blue: #2980b9; /* A darker shade of accent blue */
+    --text-dark: #333;
+    --text-light: #f8f8f8;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-beige); /* Light beige background for the body */
+    color: var(--text-dark); /* Dark text for readability */
+    line-height: 1.6;
+}
+
+/* Header styles */
+.header-custom {
+    background-color: var(--dark-blue); /* Dark blue header */
+    color: var(--text-light); /* Light text on dark background */
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow for contrast */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.header-custom .logo {
+    height: 70px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.header-custom h1 {
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* Stronger text shadow */
+    flex-grow: 1;
+    text-align: right;
+    margin-left: 20px;
+}
+
+/* Navigation bar styles */
+.nav-custom {
+    background-color: var(--dark-blue); /* Dark blue navigation bar */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    margin-top: 10px; /* Space between header and nav */
+}
+
+.nav-custom .btn {
+    padding: 10px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+}
+
+.nav-custom .btn-primary {
+    background-color: var(--accent-blue); /* Accent blue for primary button */
+    border-color: var(--accent-blue);
+    color: var(--text-light); /* Light text on blue */
+}
+
+.nav-custom .btn-primary:hover {
+    background-color: var(--accent-dark-blue);
+    border-color: var(--accent-dark-blue);
+    transform: translateY(-2px);
+}
+
+.nav-custom .btn-secondary {
+    background-color: var(--beige); /* Beige for secondary button */
+    border-color: var(--beige);
+    color: var(--text-dark); /* Dark text on beige */
+}
+
+.nav-custom .btn-secondary:hover {
+    background-color: #e0e0bf; /* Slightly darker beige on hover */
+    border-color: #e0e0bf;
+    transform: translateY(-2px);
+}
+
+/* Main content styles */
+.main-content {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.image-normandia {
+    max-height: 450px;
+    object-fit: cover;
+    border: 5px solid var(--beige); /* Beige border around the image */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.project-description-section {
+    background-color: var(--beige); /* Beige background for the description section */
+    color: var(--text-dark);
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
+}
+
+h2 {
+    color: var(--dark-blue); /* Dark blue for section titles */
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+/* Form and map sections styles */
+.form-section {
+    background-color: var(--beige); /* Beige background for form/map sections */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 30px;
+}
+
+.form-section .form-control,
+.form-section .form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    background-color: var(--light-beige); /* Lighter beige for form inputs */
+    color: var(--text-dark);
+}
+
+.form-section .form-control:focus,
+.form-section .form-select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25); /* Accent blue focus ring */
+}
+
+.form-section .form-text {
+    font-size: 0.85em;
+    color: #6c757d;
+}
+
+.map-placeholder {
+    height: 400px;
+    background-color: var(--light-beige); /* Light beige for map placeholder */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+    color: #6c757d;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Footer styles */
+.footer-custom {
+    background-color: var(--dark-blue); /* Dark blue footer */
+    color: var(--text-light); /* Light text on dark background */
+    padding: 20px 20px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 50px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.footer-custom a {
+    color: #add8e6; /* Light blue for links in footer */
+    text-decoration: none;
+}
+
+.footer-custom a:hover {
+    text-decoration: underline;
+    color: #a0c4ff;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .header-custom {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .header-custom .logo {
+        height: 50px;
+        margin-bottom: 10px;
+        margin-right: 0 !important;
+    }
+
+    .header-custom h1 {
+        font-size: 1.2em;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .nav-custom {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .nav-custom .btn {
+        width: 100%;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .image-normandia {
+        max-height: 250px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .map-placeholder {
+        height: 250px;
+    }
+
+    .col-md-6 {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-custom h1 {
+        font-size: 1em;
+    }
+
+    .nav-custom .btn {
+        font-size: 1em;
+    }
+
+    .form-text {
+        font-size: 0.75em;
+    }
+}
