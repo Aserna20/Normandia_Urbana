@@ -119,6 +119,8 @@ body {
 }
 
 /* Estilos para el contenedor del mapa en general (en cualquier sección) */
+/* NOTA: Tu HTML usa 'map-container' en el div del mapa. Asegúrate de que este estilo se aplique correctamente. */
+/* Para el mapa Leaflet, se está usando el ID '#map' y '#allConstructionsMap' con sus propias alturas */
 .map-container {
     height: 500px; /* Altura predeterminada para el mapa de Google Maps */
     width: 100%;
@@ -133,8 +135,8 @@ body {
     border: 0;
 }
 
-/* Estilos para el mapa Leaflet */
-#map {
+/* Estilos para el mapa Leaflet (ID) */
+#map, #allConstructionsMap {
     height: 600px; /* Ajusta la altura del mapa Leaflet según sea necesario */
     width: 100%;
     border: 2px solid #34495e;
@@ -142,13 +144,52 @@ body {
     margin-bottom: 30px; /* Espacio debajo del mapa si el formulario lo sigue */
 }
 
-#formulario {
+/* Estilos para el formulario si lo quieres separado del .content-section */
+/* Nota: Tu HTML usa id="registroConstruccionForm" dentro de #formularioConstruccionSection.
+   El estilo #formulario que tenías en tu CSS ya no es necesario si el formulario no tiene ese ID.
+   Los estilos para el formulario deberían apuntar a #registroConstruccionForm o a elementos dentro de content-section.
+   Mantengo #formulario aqui pero ten en cuenta la nota. */
+#formulario { /* Este ID NO está en tu HTML actual, considera eliminarlo o cambiarlo a #registroConstruccionForm */
     width: 70%; /* Ajustado para un mejor centrado en la página */
     margin: 0 auto; /* Centra el formulario */
     padding: 30px;
     background-color: #f5f5dc; /* Beige para el fondo del formulario */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Estilos para los botones de envío del formulario */
+#registroConstruccionForm .btn-primary {
+    background-color: #34495e; /* Azul oscuro para el botón primario */
+    border-color: #34495e;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+#registroConstruccionForm .btn-primary:hover {
+    background-color: #2c3e50; /* Tono más oscuro al pasar el mouse */
+    border-color: #2c3e50;
+}
+
+/* Estilos para las tarjetas de construcción en el listado */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-3px);
+}
+.card-title {
+    color: #34495e;
+    font-weight: bold;
+}
+.card-subtitle {
+    color: #666 !important;
+}
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* --- Pie de Página Personalizado --- */
@@ -172,7 +213,7 @@ body {
 
 /* --- Responsividad Básica --- */
 @media (max-width: 992px) { /* Ajuste para tablets */
-    #formulario {
+    #formulario { /* Si el ID #formulario NO se usa en el HTML, este estilo no hará nada */
         width: 90%; /* Ajusta el ancho del formulario */
     }
 }
