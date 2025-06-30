@@ -17,12 +17,12 @@
     </header>
 
     <nav class="nav-custom">
-        <button type="button" class="btn btn-primary" onclick="showSection('home', event)">Inicio</button>
-        <button type="button" class="btn btn-primary" onclick="showSection('leyesPot', event)">Leyes POT y Zonal</button>
-        <button type="button" class="btn btn-primary" onclick="showSection('normasCuraduria', event)">Normas Curaduría</button>
-        <button type="button" class="btn btn-primary" onclick="showSection('formularioConstruccion', event)">Registrar Construcción</button>
-        <button type="button" class="btn btn-primary" onclick="showSection('listadoConstrucciones', event)">Listado de Construcciones</button>
-        <button type="button" class="btn btn-primary" onclick="showSection('problematicaPot', event)">Problemática POT</button>
+        <button type="button" class="btn btn-primary" data-section="home">Inicio</button>
+        <button type="button" class="btn btn-primary" data-section="leyesPot">Leyes POT y Zonal</button>
+        <button type="button" class="btn btn-primary" data-section="normasCuraduria">Normas Curaduría</button>
+        <button type="button" class="btn btn-primary" data-section="formularioConstruccion">Registrar Construcción</button>
+        <button type="button" class="btn btn-primary" data-section="listadoConstrucciones">Listado de Construcciones</button>
+        <button type="button" class="btn btn-primary" data-section="problematicaPot">Problemática POT</button>
     </nav>
 
     <main class="container main-content">
@@ -69,74 +69,89 @@
         </section>
 
         <section id="formularioConstruccionSection" class="row content-section justify-content-center">
-            <div class="col-12 col-lg-8">
+            <div class="col-12">
                 <h2 class="text-center mb-4">¡Registra tu Construcción en Normandía!</h2>
-                <p class="text-center text-muted mb-4">Ayúdanos a recopilar información sobre las construcciones en el barrio. ¡Tu aporte es valioso para nuestro análisis! Haz clic en el mapa para seleccionar la ubicación exacta de la construcción.</p>
-                <div id="map" class="mb-4 map-container"></div>
-                <form id="registroConstruccionForm">
-                    <div class="mb-3">
-                        <label for="nupre" class="form-label">NUPRE:</label>
-                        <input type="text" class="form-control" id="nupre" name="nupre" maxlength="30" required placeholder="Ej: 1234567890ABCDEFGHIJKLMNO" pattern="[A-Za-z0-9]{1,30}" title="Solo letras y números, máximo 30 caracteres.">
-                        <div class="form-text">Número Único de Propiedad y Registro de Edificación (Máx. 30 caracteres, alfanumérico).</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccion" class="form-label">Dirección:</label>
-                        <input type="text" class="form-control" id="direccion" name="direccion" maxlength="100" required placeholder="Ej: Calle 50 # 70-25">
-                    </div>
-                    <div class="mb-3">
-                        <label for="tipo_construccion" class="form-label">Tipo de Construcción:</label>
-                        <select class="form-select" id="tipo_construccion" name="tipo_construccion" required>
-                            <option value="">Selecciona una opción</option>
-                            <option value="Casa Unifamiliar">Casa Unifamiliar</option>
-                            <option value="Apartamento">Apartamento</option>
-                            <option value="Edificio Residencial">Edificio Residencial</option>
-                            <option value="Edificio Comercial">Edificio Comercial</option>
-                            <option value="Lote">Lote</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="pisos" class="form-label">Número de Pisos:</label>
-                        <input type="number" class="form-control" id="pisos" name="pisos" min="1" required placeholder="Ej: 2">
-                    </div>
-                    <div class="mb-3">
-                        <label for="area_predio" class="form-label">Área del Predio (m² o descripción):</label>
-                        <textarea class="form-control" id="area_predio" name="area_predio" rows="2" maxlength="1000" required placeholder="Ej: 150 m², o 10x15 metros"></textarea>
-                        <div class="form-text">Especifica el área del predio o sus dimensiones.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="estado" class="form-label">Estado de la Construcción:</label>
-                        <select class="form-select" id="estado" name="estado" required>
-                            <option value="">Selecciona el estado</option>
-                            <option value="1">Construida</option>
-                            <option value="2">En Construcción</option>
-                            <option value="3">Proyecto</option>
-                            <option value="4">Demolida</option>
-                            <option value="5">Otro</option>
-                        </select>
-                        <div class="form-text">Indica el estado actual de la construcción.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="propietario" class="form-label">Nombre del Propietario:</label>
-                        <input type="text" class="form-control" id="propietario" name="propietario" maxlength="100" required placeholder="Ej: Juan Pérez">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cedula_propietario" class="form-label">Cédula del Propietario:</label>
-                        <input type="text" class="form-control" id="cedula_propietario" name="cedula_propietario" maxlength="100" required placeholder="Ej: 123456789">
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="form-label">Localización (Coordenadas):</label>
-                        <div class="col-md-6 mb-2">
-                            <input type="number" step="any" class="form-control" id="latitud" name="latitud" required placeholder="Latitud (Ej: 4.6738)" readonly>
-                            <div class="form-text">Haz clic en el mapa para obtener la latitud.</div>
+                <p class="text-center text-muted mb-4">Ayúdanos a recopilar información sobre las construcciones en el barrio. ¡Tu aporte es valioso para nuestro análisis!</p>
+            </div>
+            <div class="col-12 d-flex flex-column flex-lg-row">
+                <div class="col-lg-6 order-lg-1">
+                    <form id="registroConstruccionForm" class="p-3">
+                        <div class="mb-3">
+                            <label for="direccion_busqueda" class="form-label">Buscar Dirección:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="direccion_busqueda" placeholder="Ej: Calle 50 # 70-25, Bogotá">
+                                <button class="btn btn-outline-secondary" type="button" id="buscarDireccionBtn">Buscar</button>
+                            </div>
+                            <div class="form-text">Busca la dirección y el mapa se centrará. Luego puedes ajustar el marcador.</div>
                         </div>
-                        <div class="col-md-6 mb-2">
-                            <input type="number" step="any" class="form-control" id="longitud" name="longitud" required placeholder="Longitud (Ej: -74.1030)" readonly>
-                            <div class="form-text">Haz clic en el mapa para obtener la longitud.</div>
+                        <div class="mb-3">
+                            <label for="nupre" class="form-label">NUPRE:</label>
+                            <input type="text" class="form-control" id="nupre" name="nupre" maxlength="30" required placeholder="Ej: 1234567890ABCDEFGHIJKLMNO" pattern="[A-Za-z0-9]{1,30}" title="Solo letras y números, máximo 30 caracteres.">
+                            <div class="form-text">Número Único de Propiedad y Registro de Edificación (Máx. 30 caracteres, alfanumérico).</div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100 mt-3">Enviar Información</button>
-                </form>
+                        <div class="mb-3">
+                            <label for="direccion" class="form-label">Dirección (del marcador):</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion" maxlength="100" required placeholder="Se rellenará automáticamente o escribe aquí." readonly>
+                            <div class="form-text">Esta dirección se actualizará con la posición del marcador en el mapa.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo_construccion" class="form-label">Tipo de Construcción:</label>
+                            <select class="form-select" id="tipo_construccion" name="tipo_construccion" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="Casa Unifamiliar">Casa Unifamiliar</option>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Edificio Residencial">Edificio Residencial</option>
+                                <option value="Edificio Comercial">Edificio Comercial</option>
+                                <option value="Lote">Lote</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pisos" class="form-label">Número de Pisos:</label>
+                            <input type="number" class="form-control" id="pisos" name="pisos" min="1" required placeholder="Ej: 2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="area_predio" class="form-label">Área del Predio (m² o descripción):</label>
+                            <textarea class="form-control" id="area_predio" name="area_predio" rows="2" maxlength="1000" required placeholder="Ej: 150 m², o 10x15 metros"></textarea>
+                            <div class="form-text">Especifica el área del predio o sus dimensiones.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="estado" class="form-label">Estado de la Construcción:</label>
+                            <select class="form-select" id="estado" name="estado" required>
+                                <option value="">Selecciona el estado</option>
+                                <option value="1">Construida</option>
+                                <option value="2">En Construcción</option>
+                                <option value="3">Proyecto</option>
+                                <option value="4">Demolida</option>
+                                <option value="5">Otro</option>
+                            </select>
+                            <div class="form-text">Indica el estado actual de la construcción.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="propietario" class="form-label">Nombre del Propietario:</label>
+                            <input type="text" class="form-control" id="propietario" name="propietario" maxlength="100" required placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cedula_propietario" class="form-label">Cédula del Propietario:</label>
+                            <input type="text" class="form-control" id="cedula_propietario" name="cedula_propietario" maxlength="100" required placeholder="Ej: 123456789">
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="form-label">Localización (Coordenadas):</label>
+                            <div class="col-md-6 mb-2">
+                                <input type="number" step="any" class="form-control" id="latitud" name="latitud" required placeholder="Latitud (Ej: 4.6738)" readonly>
+                                <div class="form-text">Se rellena automáticamente al mover el marcador.</div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <input type="number" step="any" class="form-control" id="longitud" name="longitud" required placeholder="Longitud (Ej: -74.1030)" readonly>
+                                <div class="form-text">Se rellena automáticamente al mover el marcador.</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3">Enviar Información</button>
+                    </form>
+                </div>
+                <div class="col-lg-6 order-lg-2">
+                    <div id="map" class="map-form-container mt-4 mt-lg-0"></div>
+                </div>
             </div>
         </section>
 
@@ -144,7 +159,6 @@
             <div class="col-12">
                 <h2 class="text-center mb-4">Listado de Construcciones Registradas en Normandía</h2>
                 <p class="text-center text-muted mb-4">Explora todas las construcciones que han sido registradas en nuestra base de datos. Puedes ver sus detalles y ubicar cada una en el mapa.</p>
-                <div id="allConstructionsMap" class="map-container mb-4"></div>
                 <div id="construccionesList" class="row">
                     <p class="text-center">Cargando construcciones...</p>
                 </div>

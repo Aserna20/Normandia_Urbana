@@ -21,7 +21,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-custom .h1 { /* Cambiado a h1 para coherencia con el HTML */
+.header-custom .h1 {
     color: #f5f5dc; /* Beige para el título de la cabecera */
     font-weight: bold;
 }
@@ -68,7 +68,6 @@ body {
     pointer-events: none; /* Deshabilita clics en el botón activo */
 }
 
-
 /* --- Contenido Principal de las Secciones --- */
 .main-content {
     flex: 1;
@@ -96,6 +95,17 @@ body {
     margin-bottom: 20px;
 }
 
+/* Estilos para enlaces dentro de las secciones de contenido */
+.content-section a {
+    color: #34495e; /* Azul oscuro para los enlaces */
+    text-decoration: underline;
+}
+
+.content-section a:hover {
+    color: #2c3e50; /* Un tono más oscuro al pasar el mouse */
+    text-decoration: none;
+}
+
 /* --- Estilos Específicos de la Sección de Inicio (Home) --- */
 .image-normandia {
     max-width: 100%;
@@ -118,45 +128,15 @@ body {
     color: #333;
 }
 
-/* Estilos para el contenedor del mapa en general (en cualquier sección) */
-/* NOTA: Tu HTML usa 'map-container' en el div del mapa. Asegúrate de que este estilo se aplique correctamente. */
-/* Para el mapa Leaflet, se está usando el ID '#map' y '#allConstructionsMap' con sus propias alturas */
-.map-container {
-    height: 500px; /* Altura predeterminada para el mapa de Google Maps */
+/* Estilos para el contenedor del mapa en el formulario de registro */
+.map-form-container {
+    height: 650px; /* Altura del mapa en el formulario */
     width: 100%;
     border: 2px solid #34495e; /* Borde azul oscuro para el mapa */
     border-radius: 8px;
     overflow: hidden;
-    margin-top: 20px;
-}
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
 }
 
-/* Estilos para el mapa Leaflet (ID) */
-#map, #allConstructionsMap {
-    height: 600px; /* Ajusta la altura del mapa Leaflet según sea necesario */
-    width: 100%;
-    border: 2px solid #34495e;
-    border-radius: 8px;
-    margin-bottom: 30px; /* Espacio debajo del mapa si el formulario lo sigue */
-}
-
-/* Estilos para el formulario si lo quieres separado del .content-section */
-/* Nota: Tu HTML usa id="registroConstruccionForm" dentro de #formularioConstruccionSection.
-   El estilo #formulario que tenías en tu CSS ya no es necesario si el formulario no tiene ese ID.
-   Los estilos para el formulario deberían apuntar a #registroConstruccionForm o a elementos dentro de content-section.
-   Mantengo #formulario aqui pero ten en cuenta la nota. */
-#formulario { /* Este ID NO está en tu HTML actual, considera eliminarlo o cambiarlo a #registroConstruccionForm */
-    width: 70%; /* Ajustado para un mejor centrado en la página */
-    margin: 0 auto; /* Centra el formulario */
-    padding: 30px;
-    background-color: #f5f5dc; /* Beige para el fondo del formulario */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 /* Estilos para los botones de envío del formulario */
 #registroConstruccionForm .btn-primary {
     background-color: #34495e; /* Azul oscuro para el botón primario */
@@ -192,6 +172,16 @@ body {
     line-height: 1.6;
 }
 
+/* Estilo para los mapas individuales dentro de cada tarjeta del listado */
+.card-map-container {
+    height: 200px; /* Altura más pequeña para los mapas en cada tarjeta */
+    width: 100%;
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados en la parte inferior */
+    overflow: hidden;
+}
+
 /* --- Pie de Página Personalizado --- */
 .footer-custom {
     background-color: #34495e; /* Azul oscuro para el pie de página */
@@ -213,8 +203,8 @@ body {
 
 /* --- Responsividad Básica --- */
 @media (max-width: 992px) { /* Ajuste para tablets */
-    #formulario { /* Si el ID #formulario NO se usa en el HTML, este estilo no hará nada */
-        width: 90%; /* Ajusta el ancho del formulario */
+    .map-form-container {
+        height: 400px; /* Reduce la altura del mapa en pantallas más pequeñas */
     }
 }
 
@@ -240,5 +230,9 @@ body {
 
     .content-section {
         padding: 20px; /* Reduce el padding en móviles */
+    }
+
+    .map-form-container {
+        height: 300px; /* Aún más pequeño en móviles */
     }
 }
