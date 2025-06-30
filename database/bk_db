@@ -131,3 +131,21 @@ ALTER TABLE ONLY public.construccion
 -- PostgreSQL database dump complete
 --
 
+--
+-- TOC entry 215 (class 1259 OID 44757)
+-- Name: construccion; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.construccion (
+    id integer NOT NULL,
+    nupre character varying(30) NOT NULL,
+    direccion character varying(100) NOT NULL,
+    tipo_construccion character varying(100) NOT NULL,
+    pisos integer NOT NULL,
+    area_predio character varying(1000) NOT NULL,
+    estado integer NOT NULL,
+    propietario character varying(100) NOT NULL,
+    cedula_propietario character varying(100) NOT NULL,
+    localizacion point NOT NULL,
+    url_imagen character varying(255) -- Nueva columna para la URL de la imagen
+);
